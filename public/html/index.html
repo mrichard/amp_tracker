@@ -29,6 +29,7 @@
     </div>
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/underscore-min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script>
 
@@ -38,16 +39,25 @@
 
         console.log(data);
 
-        if( data.isFirstHit === "true" ){
-           $( "tbody", "#container").append( '<tr id="' + data.id + '" data=count="0"><td>' + data.id + '</td><td>0</td></tr>');
-        }
-        else {
-           var trElem = $( "tbody", "#container").find( "#" + data.id ).data("count");
-           var newCount = trElem.data("count")++
-           trElem.html( '<td>' + data.id + '</td><td>' + newCount + '</td>' );
-        }
+        var foundCell = $( 'tr#' + data.userNumber );
 
+        if( foundCell.lenght > 0 ) {
+          var currentCount = foundCell.find( '.total').text.trim();
+          currentCount = parseInt( currentCount );
+          currentCount++;
 
+          foundCell.html('<td>' + data.id + '</td><td class="total">' + currentCount + '</td></tr>');
+        } else {
+          $( "tbody", "#container").append( '<tr id="' + data.userNumber + '"><td>' + data.id + '</td><td class="total">0</td></tr>');
+        }
+      });
+
+      // an object of all items
+      socket.on( 'bootstrap', function( data ){
+        var elem = $( "tbody", "#container");
+        _.each( data, function(item){
+          elem.append( '<tr id="' + item.userNumber + '"><td>' + item.id + '</td><td class="total">0</td></tr>');
+        });
       });
 
       socket.on('heartbeat', function (data) {

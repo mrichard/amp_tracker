@@ -1,3 +1,4 @@
+var ampDataStore = require( '../models/ampDataStore' );
 var sio;
 
 module.exports = {
@@ -8,6 +9,10 @@ module.exports = {
 	init: function( socketIO ){
 		console.log( socketIO );
 		sio = socketIO;
+
+		sio.on( 'connection', function( socket ){
+			socket.emit( 'bootstrap', ampDataStore.getAll() );
+		});
 
 		setInterval( function(){
 			console.log( "emmitting heartbeat" );

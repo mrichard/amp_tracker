@@ -11,20 +11,21 @@ var app = express();
 var server = http.Server( app );
 var socketIO = io( server );
 
+// set up CORS
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
  });
 
-
-
+// Routes
 var config = require( './config/config');
 var heartbeat = require( './routes/heartbeat' );
 var notFound = require( './routes/notFound' );
 var ampTracker = require( './routes/amptracker');
 var main = require( './routes/main' );
 
+// set up SocketIO controller
 var socketController = require('./controllers/socketController').init( socketIO );
 
 
