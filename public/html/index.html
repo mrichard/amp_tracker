@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AMP Tracker</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <script type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>AMP Tracker</h1>
+      </div>
+    </div>
+
+    <div class="container" id="container">
+      <table class="table table-striped">
+          <thead>
+          <tr>
+          <th>user ID</th>
+          <th>Video has stopped (count)</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      </table>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script>
+
+      var socket = io.connect('http://localhost:3000');
+
+      socket.on('onBuffer', function (data) {
+
+        console.log(data);
+
+        if( data.isFirstHit === "true" ){
+           $( "tbody", "#container").append( '<tr id="' + data.id + '" data=count="0"><td>' + data.id + '</td><td>0</td></tr>');
+        }
+        else {
+           var trElem = $( "tbody", "#container").find( "#" + data.id ).data("count");
+           var newCount = trElem.data("count")++
+           trElem.html( '<td>' + data.id + '</td><td>' + newCount + '</td>' );
+        }
+
+
+      });
+
+      socket.on('heartbeat', function (data) {
+        console.log(data);
+      });
+    </script>
+  </body>
+</html>
