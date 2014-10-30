@@ -7,7 +7,6 @@ module.exports = {
 		sio.emit( event, data );
 	},
 	init: function( socketIO ){
-		console.log( socketIO );
 		sio = socketIO;
 
 		sio.on( 'connection', function( socket ){

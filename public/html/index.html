@@ -41,8 +41,8 @@
 
         var foundCell = $( 'tr#' + data.userNumber );
 
-        if( foundCell.lenght > 0 ) {
-          var currentCount = foundCell.find( '.total').text.trim();
+        if( foundCell.length > 0 ) {
+          var currentCount = foundCell.find( '.total').text().trim();
           currentCount = parseInt( currentCount );
           currentCount++;
 
