@@ -7,7 +7,6 @@ module.exports = {
 
 		var newDataObject = ampDataStore.store( req.body );
 
-
 		// publishing an ID and counter
 		socketController.publish( "onBuffer", newDataObject );
 

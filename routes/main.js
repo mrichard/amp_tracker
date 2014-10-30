@@ -1,9 +1,8 @@
-var express = require( 'express' );
+var express = require('express');
 var router = express.Router();
-var path = require( 'path' );
+var path = require('path');
+var mainController = require('../controllers/mainController');
 
-router.get( '/', function(req, res) {
-	res.sendFile(  path.join( __dirname, '../public/html/index.html' ) );
-});
+router.get('/', mainController.handleIndex);
 
 module.exports = router;
