@@ -11,10 +11,7 @@ module.exports = {
 		socketController.publish( "onBuffer", newDataObject );
 
 		// send response to AMP page
-		res.status(200).json({
-			id: req.body.id,
-			value: req.body.value
-		});
+		res.status(200).json( newDataObject );
 	}
 };
 
