@@ -2,7 +2,7 @@ var winston = require( 'winston' );
 var config = require( '../config/config' );
 
 console.log( "LOGGIN CONFIG ======================" );
-console.log( config );
+console.log( config.get( 'logger:filename' ) );
 
 function Logger() {
 	return winston.add( winston.transports.File, {
