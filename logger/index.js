@@ -1,6 +1,8 @@
 var winston = require( 'winston' );
 var config = require( '../config/config' );
 
+console.log( "LOGGIN CONFIG ======================" );
+console.log( config );
 
 function Logger() {
 	return winston.add( winston.transports.File, {
