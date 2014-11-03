@@ -1,6 +1,6 @@
 {
   "express": {
-    "port": 3000
+    "port": 80
   },
   "logger": {
   	"level": "dev",
