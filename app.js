@@ -27,7 +27,7 @@ app.use( bodyParser() );
 app.use(express.static(__dirname + '/public'));
 
 // PORT
-app.set( 'port', config.get( "express:port" ) );
+app.set( 'port', process.env.PORT || config.get( "express:port" ) );
 
 // LOGGING
 app.use( logger( config.get( "logger:level" ), { immediate: true }) );
