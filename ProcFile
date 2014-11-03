@@ -1,1 +1,1 @@
-web: NODE_ENV=prod node app.js
+web: export NODE_ENV=production; node app.js
