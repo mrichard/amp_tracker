@@ -33,7 +33,12 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script>
 
-      var socket = io.connect('http://localhost:3000');
+      var socketUrl = '//' + document.location.hostname;
+      if( document.location.port ) {
+        socketUrl = socketUrl + ':' + document.location.port;
+      }
+
+      var socket = io.connect( socketUrl );
 
       socket.on('onBuffer', function (data) {
 
