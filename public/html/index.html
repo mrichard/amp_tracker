@@ -61,7 +61,7 @@
       socket.on( 'bootstrap', function( data ){
         var elem = $( "tbody", "#container");
         _.each( data, function(item){
-          elem.append( '<tr id="' + item.userNumber + '"><td>' + item.id + '</td><td class="total">0</td></tr>');
+          elem.append( '<tr id="' + item.userNumber + '"><td>' + item.id + '</td><td class="total">' + data.total + '</td></tr>');
         });
       });
 
