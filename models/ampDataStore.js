@@ -13,16 +13,16 @@ module.exports = {
 		}
 		// else create a new entry in the storage
 		else {
-			userNumber = userNumber++;
+			userNumber = userNumber + 1;
 
-			storage[id] = {
+			storage.id = {
 				id: data.id,
 				total: 0,
 				userNumber: "user" + userNumber
 			}
 		}
 
-		return _.extend( storage[id] );
+		return storage[id];
 	},
 
 	getAll: function(){
