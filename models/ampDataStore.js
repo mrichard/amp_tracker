@@ -5,7 +5,7 @@ var storage = {};
 
 module.exports = {
 	store: function( data ) {
-		var id = data.id;
+		var id = data.id + "";
 
 		// if the item is already in storage, then just add 1
 		if( storage[id] ) {
@@ -15,7 +15,7 @@ module.exports = {
 		else {
 			userNumber = userNumber + 1;
 
-			storage.id = {
+			storage[id] = {
 				id: data.id,
 				total: 0,
 				userNumber: "user" + userNumber
